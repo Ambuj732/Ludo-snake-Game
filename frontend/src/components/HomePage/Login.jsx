@@ -37,15 +37,16 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit(loginHandler)}
-        className="bg-white p-6 rounded shadow-md w-96"
-      >
-        <h2 className="text-2xl mb-4 text-center">Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-[#6F4FF1]">
+      <form onSubmit={handleSubmit(loginHandler)} className=" p-6  w-96">
+        <h2 className="text-4xl mb-4 text-center text-white font-bold">
+          Login
+        </h2>
 
         <div className="mb-4">
-          <label className="block mb-1 text-gray-600">UserId</label>
+          <label className="block mb-1 text-2xl font-semibold text-white">
+            UserId
+          </label>
           <input
             type="text"
             {...register("userID", { required: true })}
@@ -54,7 +55,9 @@ const LoginForm = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-1 text-gray-600">Password</label>
+          <label className="block mb-1 text-2xl font-semibold text-white">
+            Password
+          </label>
           <input
             type="password"
             {...register("password", { required: true })}
@@ -64,15 +67,15 @@ const LoginForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded"
+          className="w-full bg-blue-500 text-white  font-bold  text-2xl p-2 rounded"
         >
           Login
         </button>
-        <div className=" mt-2 font-bold">
+        <div className=" mt-2 font-bold text-white">
           <span>Don't have an account? </span>
           <a
             onClick={goToPage}
-            className="underline text-blue-800 font-bold cursor-pointer"
+            className="underline text-white text-xl font-bold cursor-pointer"
           >
             Register here
           </a>
