@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/HomePage/logo.jpg";
+import logo from "../../assets/HomePage/logo.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
 import user from "../../assets/HomePage/user.png";
@@ -69,13 +69,13 @@ const HomePage = () => {
           <div>
             <img src={logo1} className="w-20 h-20 sm:w-32 sm:h-32" alt="Logo" />
           </div>
-          <div
+          {/* <div
             className="text-white cursor-pointer sm:block"
             onClick={toggleMenu}
           >
             <span className="text-xl">&#9776;</span>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             className={`sm:flex gap-7 text-white cursor-pointer ${
               menuOpen ? "block" : "hidden"
             } sm:block`}
@@ -83,7 +83,7 @@ const HomePage = () => {
             <span>Home</span>
             <span>About</span>
             <span>Contact</span>
-          </div>
+          </div> */}
           <div onClick={goToPages} className="text-white cursor-pointer">
             <span>Login!</span>
           </div>
@@ -109,7 +109,7 @@ const HomePage = () => {
           <img src={logo} className="w-7 h-7 rounded" alt="Logo" />
           <div className="h-[40px] border border-gray-700"></div>
           <div className="flex flex-col justify-center items-center object-contain">
-            <span className="text-white mb-1 text-sm">Price Pool</span>
+            <span className="text-white mb-1 text-sm">Prize Pool</span>
             <div className="flex gap-2 object-contain">
               <img src={coin} className="w-5 h-5" alt="Coin" />
               <span className="text-white">1000</span>
