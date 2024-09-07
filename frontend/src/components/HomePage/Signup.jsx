@@ -33,7 +33,7 @@ const SignUp = () => {
       };
       console.log(data);
       const response = await registerUser(data);
-      navigate("/");
+      navigate("/login");
     } catch (errors) {
       console.log("Error whing signup", errors);
     }
@@ -101,7 +101,7 @@ const SignUp = () => {
         <div className="mt-2 ml-10">
           <span className=" flex gap-2">
             Already have an account?
-            <a className="underline font-bold" href="/">
+            <a className="underline font-bold" href="/login">
               Log in
             </a>
           </span>

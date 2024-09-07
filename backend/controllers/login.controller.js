@@ -1,5 +1,4 @@
 import Signup from "../models/signup.modal.js";
-
 const login = async (req, res) => {
   const { userId, password } = req.body;
 
@@ -22,6 +21,7 @@ const login = async (req, res) => {
         userId: user.userId,
         email: user.email,
         mobileNumber: user.mobileNumber,
+        password: user.password,
       },
     });
   } catch (error) {
