@@ -11,27 +11,23 @@ import getUserInformation from "./routes/getUserInforamtion.routes.js";
 const port = process.env.PORT;
 const app = express();
 
-// middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
 
-// db connection
 connectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello world!");
 });
 
-// Mount the signup route
 app.use("/auth", signup);
 app.use("/auth", coin);
 app.use("/auth", userInformation);
 app.use("/auth", getUserInformation);
 
-// server connection
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
