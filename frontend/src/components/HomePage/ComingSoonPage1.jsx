@@ -89,7 +89,7 @@ const ComingSoonPage = () => {
           <div className="text-white cursor-pointer hide" onClick={toggleMenu}>
             <span className="text-xl">&#9776;</span>
           </div>
-          {/* <div
+          <div
             className={`sm:flex gap-7 text-white cursor-pointer ${
               menuOpen ? "block" : "hidden"
             } sm:block`}
@@ -98,8 +98,11 @@ const ComingSoonPage = () => {
             <span>About</span>
             <span>Contact</span>
           </div>
-          <div className="text-white cursor-pointer">
-            <span>Login!</span>
+          <div
+            className="text-white cursor-pointer"
+            onClick={goUserProfilePage}
+          >
+            <span>{loginData.userName}</span>
           </div>
         </nav>
       </header>
