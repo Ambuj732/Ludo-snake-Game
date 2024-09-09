@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import bg from "../../assets/HomePage/bg.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
@@ -16,7 +16,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import login from "../../actions/LoginScreens/login";
 import coinUpdateData from "../../actions/LoginScreens/coinUpdate";
-import UserProfilePage from "./UserProfilePage";
+
 const levels = [
   "Maddy Moon",
   "Happy Sun",
