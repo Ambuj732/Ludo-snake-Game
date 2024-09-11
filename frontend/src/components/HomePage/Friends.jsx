@@ -44,49 +44,28 @@ const Friends = () => {
   };
 
   return (
-    <div className=" absolute inset-0  bg-black min-h-screen p-4">
-      <div className="flex flex-col justify-center items-center mt-10">
+    <div className=" absolute inset-0 bg-black min-h-screen p-4">
+      <div className="flex flex-col justify-center items-center mt-4">
         <span className="text-white font-bold text-2xl">Invite Friends</span>
-        <span className="text-white font-sans">
+        <span className="text-white font-sans text-nowrap">
           You and your friends will receive bonuses
         </span>
       </div>
 
-      <div className="flex flex-col gap-3 mt-10">
+      <div className="flex flex-col gap-4 mt-7">
         <div className="bg-[#0D1B43] w-[100%] h-auto rounded-2xl ">
-          <div className="flex gap-1 justify-center items-center">
-            <div className="object-fill">
+          <div className="flex gap-1 justify-center items-center ">
+            <div className=" object-contain">
               <img src={gift} className="w-16 h-16 " />
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-white font-bold text-md">
                 Invite Friends
               </span>
-              <div className="flex justify-center items-center w-full gap-2 ">
+              <div className="flex justify-center items-center w-auto h-auto gap-2 ">
                 <img src={coin} className="w-5 h-5" />
                 <span className="text-[#7F7526] font-bold">
                   <span className="font-bold text-[#7F7526]">+</span>5,000
-                </span>
-                <span className="text-white font-custom text-nowrap">
-                  for You and your freind
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[#0D1F4F] w-full h-20 rounded-2xl ">
-          <div className="flex gap-1 justify-center items-center">
-            <div className="object-fill">
-              <img src={gift2} className="w-16 h-16 " />
-            </div>
-            <div className="flex flex-col gap-2">
-              <span className="text-white font-bold text-md">
-                Invite Friends
-              </span>
-              <div className="flex  justify-center items-center gap-1">
-                <img src={coin} className="w-5 h-5" />
-                <span className="text-[#7F7526] font-bold">
-                  <span className="font-bold text-[#7F7526]">+</span>25,000
                 </span>
                 <span className="text-white font-custom ">
                   for You and your freind
@@ -95,7 +74,29 @@ const Friends = () => {
             </div>
           </div>
         </div>
+        <div className="bg-[#0D1F4F] w-full h-auto rounded-2xl ">
+          <div className="flex gap-1 justify-center items-center">
+            <div className="object-fill">
+              <img src={gift2} className="w-16 h-16 " />
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-white font-bold text-md">
+                Invite Friends
+              </span>
+              <div className="flex  justify-center items-center h-auto gap-1">
+                <img src={coin} className="w-5 h-5" />
+                <span className="text-[#7F7526] font-bold">
+                  <span className="font-bold text-[#7F7526]">+</span>25,000
+                </span>
+                <span className="text-white font-custom  ">
+                  for You and your freind
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className="mt-7 flex justify-between items-center">
         <span className="text-white font-semibold text-xl">
           Friends list(0)
@@ -119,6 +120,7 @@ const Friends = () => {
           </div>
         </div>
       </div>
+
       <div className="flex gap-2 bg-[#26292E] rounded-2xl w-auto h-20 mt-4 justify-between items-center flex-wrap px-2">
         <div
           className="flex flex-col items-center justify-center rounded-lg"

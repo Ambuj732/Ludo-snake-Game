@@ -1,8 +1,9 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import bg from "../../assets/HomePage/bg.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
 import icon from "../../assets/HomePage/icon.png";
+import swipe from "../../assets/HomePage/swipe.png";
 import boost from "../../assets/HomePage/boost.png";
 import star from "../../assets/HomePage/star.png";
 import mining from "../../assets/HomePage/mining.png";
@@ -10,7 +11,6 @@ import freinds from "../../assets/HomePage/freinds.png";
 import earn from "../../assets/HomePage/earn.png";
 import rabbit from "../../assets/HomePage/rabbit.png";
 import game from "../../assets/HomePage/game.png";
-import { CiSettings } from "react-icons/ci";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { Outlet, useNavigate } from "react-router-dom";
 import "./HomePage.css";
@@ -29,6 +29,11 @@ const levels = [
   "Sanky Saturn",
 ];
 
+const levelsThresholds = [
+  100000, 500000, 1500000, 5000000, 7500000, 10000000, 250000000, 500000000,
+  1000000000,
+];
+
 const HomePage = () => {
   const [amount, setAmount] = useState(0);
   const [flyCoin, setFlyCoin] = useState(false);
@@ -44,26 +49,32 @@ const HomePage = () => {
     if (energy <= 0) {
       return;
     }
+
     setFlyCoin(true);
     const newAmount = amount + 1;
     setAmount(newAmount);
-
     setEnergy((prevEnergy) => Math.max(prevEnergy - 1, 0));
 
-    let newProgress = (newAmount % 1000) / 10;
-    if (newAmount % 1000 === 0) {
-      newProgress = 100;
+    let newLevelIndex = levelsThresholds.findIndex(
+      (threshold) => newAmount < threshold
+    );
+    if (newLevelIndex === -1) {
+      newLevelIndex = levelsThresholds.length - 1;
     }
-    setProgress(newProgress);
 
-    const newLevelIndex = Math.floor(newAmount / 1000);
-    if (newLevelIndex <= levels.length) {
-      setLevelIndex(newLevelIndex);
-      setLevel(levels[newLevelIndex]);
-    } else {
-      alert("you have reached level 9");
-      setFlyCoin(false);
-    }
+    setLevelIndex(newLevelIndex);
+    setLevel(levels[newLevelIndex]);
+
+    const currentLevelThreshold = levelsThresholds[newLevelIndex - 1] || 0;
+    const nextLevelThreshold =
+      levelsThresholds[newLevelIndex] ||
+      levelsThresholds[levelsThresholds.length - 1];
+    const progressPercentage =
+      ((newAmount - currentLevelThreshold) /
+        (nextLevelThreshold - currentLevelThreshold)) *
+      100;
+
+    setProgress(progressPercentage);
 
     setTimeout(() => {
       setFlyCoin(false);
@@ -71,18 +82,16 @@ const HomePage = () => {
 
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      console.log("User Data:", user);
       const data = {
         userId: user?.userId,
         coins: 2,
       };
       const response = await coinUpdateData(data);
-      console.log(response);
 
-      if (!response.data.success) {
-        console.error("Failed to update coins:");
-      } else {
+      if (response.data.success) {
         setAmount(response?.data?.data?.coins);
+      } else {
+        console.error("Failed to update coins:");
       }
     } catch (error) {
       console.error("Error updating coins:", error);
@@ -147,9 +156,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen p-4">
-      <header className="w-full rounded-lg mb-7">
-        <nav className="flex justify-between items-center px-4">
+    <div className="bg-black min-h-screen py-3 px-4">
+      <header className="w-full rounded-lg">
+        <nav className="flex justify-between items-center px-1">
           <div>
             <img src={logo1} className="w-20 h-20 sm:w-32 sm:h-32" alt="Logo" />
           </div>
@@ -174,7 +183,7 @@ const HomePage = () => {
         </nav>
       </header>
 
-      <div className="flex justify-between mt-4 gap-4 w-full">
+      <div className="flex justify-between mt-2 gap-4 w-full">
         <div className="sm:w-[200px] h-16 flex flex-col gap-2 mb-4 sm:mb-0">
           <div className="flex justify-between items-center gap-2">
             <div className="flex text-white">
@@ -191,18 +200,21 @@ const HomePage = () => {
             <span className="text-white  text-sm">Prize Pool</span>
             <div className="flex gap-2 object-contain items-center justify-center">
               <img src={coin} className="w-5 h-5" alt="Coin" />
-              <span className="text-white">1000</span>
+              <span className="text-white">0$</span>
               <div className="rounded-full bg-gray-800 object-contain">
                 <img src={icon} className="w-5 h-5" alt="Icon" />
               </div>
             </div>
           </div>
           <div className="h-[40px] border border-gray-700"></div>
-          <CiSettings className="bg-white rounded-full w-7 h-7 cursor-pointer" />
+          <img
+            src={swipe}
+            className="bg-white rounded-full w-7 h-7 cursor-pointer"
+          />
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center mt-3 shadow-custom shadow-gray-600 rounded-3xl w-full shadow-top-golden h-[390px] gap-10">
+      <div className="flex flex-col justify-center items-center mt-4 shadow-custom shadow-gray-600 rounded-3xl w-full shadow-top-golden h-[390px] gap-10">
         <div className="flex gap-1 items-center relative">
           <img src={coin} className="w-10 h-10 " alt="Coin" />
           <span className="text-white text-4xl font-bold">{amount}</span>
@@ -218,17 +230,19 @@ const HomePage = () => {
           onClick={handleDiceRoll}
         />
       </div>
-      <div className="flex justify-around items-center mt-7">
+      <div className="flex  items-center mt-7 justify-between">
         <div className="flex gap-3 justify-center items-center">
           <img src={star} className="rounded-lg" alt="Star" />
           <span className="text-white font-bold">{energy}/1500</span>
         </div>
-        <div className="flex gap-3 justify-center items-center">
-          <img src={boost} className="rounded-lg w-10 h-8" alt="Boost" />
-          <span className="text-white font-bold">Boost</span>
+        <div className="flex gap-2 justify-center items-center px-4">
+          {/* <img src={boost} className="rounded-lg w-10 h-8" alt="Boost" /> */}
+          <span className="text-white font-bold">Buy</span>
+          <span className="text-blue-800">/</span>
+          <span className="text-white font-bold">Sell</span>
         </div>
       </div>
-      <div className="flex bg-[#26292E] rounded-2xl w-auto h-20 mt-4 justify-between items-center flex-wrap px-2">
+      <div className="flex bg-[#26292E] rounded-2xl w-auto h-20 mt-7 justify-between items-center flex-wrap px-2">
         <div
           className="flex flex-col items-center justify-center rounded-lg"
           onClick={goToWalletPage}
