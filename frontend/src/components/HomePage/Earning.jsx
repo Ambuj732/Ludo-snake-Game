@@ -21,7 +21,7 @@ import { useNavigate } from "react-router";
 const Earning = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const baseUrl = "http://localhost:5173/";
+  const baseUrl = "https://www.diiceraja.com/";
 
   const generateReferralLink = () => {
     const uniqueId = uuidv4();
