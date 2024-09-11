@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import bg from "../../assets/HomePage/bg.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
@@ -29,6 +29,11 @@ const levels = [
   "Sanky Saturn",
 ];
 
+const levelsThresholds = [
+  100000, 500000, 1500000, 5000000, 7500000, 10000000, 250000000, 500000000,
+  1000000000,
+];
+
 const HomePage = () => {
   const [amount, setAmount] = useState(0);
   const [flyCoin, setFlyCoin] = useState(false);
@@ -44,26 +49,32 @@ const HomePage = () => {
     if (energy <= 0) {
       return;
     }
+
     setFlyCoin(true);
     const newAmount = amount + 1;
     setAmount(newAmount);
-
     setEnergy((prevEnergy) => Math.max(prevEnergy - 1, 0));
 
-    let newProgress = (newAmount % 1000) / 10;
-    if (newAmount % 1000 === 0) {
-      newProgress = 100;
+    let newLevelIndex = levelsThresholds.findIndex(
+      (threshold) => newAmount < threshold
+    );
+    if (newLevelIndex === -1) {
+      newLevelIndex = levelsThresholds.length - 1;
     }
-    setProgress(newProgress);
 
-    const newLevelIndex = Math.floor(newAmount / 1000);
-    if (newLevelIndex <= levels.length) {
-      setLevelIndex(newLevelIndex);
-      setLevel(levels[newLevelIndex]);
-    } else {
-      alert("you have reached level 9");
-      setFlyCoin(false);
-    }
+    setLevelIndex(newLevelIndex);
+    setLevel(levels[newLevelIndex]);
+
+    const currentLevelThreshold = levelsThresholds[newLevelIndex - 1] || 0;
+    const nextLevelThreshold =
+      levelsThresholds[newLevelIndex] ||
+      levelsThresholds[levelsThresholds.length - 1];
+    const progressPercentage =
+      ((newAmount - currentLevelThreshold) /
+        (nextLevelThreshold - currentLevelThreshold)) *
+      100;
+
+    setProgress(progressPercentage);
 
     setTimeout(() => {
       setFlyCoin(false);
@@ -71,18 +82,16 @@ const HomePage = () => {
 
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      console.log("User Data:", user);
       const data = {
         userId: user?.userId,
         coins: 2,
       };
       const response = await coinUpdateData(data);
-      console.log(response);
 
-      if (!response.data.success) {
-        console.error("Failed to update coins:");
-      } else {
+      if (response.data.success) {
         setAmount(response?.data?.data?.coins);
+      } else {
+        console.error("Failed to update coins:");
       }
     } catch (error) {
       console.error("Error updating coins:", error);

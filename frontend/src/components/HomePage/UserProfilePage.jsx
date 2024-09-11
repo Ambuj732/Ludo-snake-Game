@@ -4,6 +4,7 @@ import close from "../../assets/HomePage/close.png";
 import ProfilePage from "./ProfilePage";
 import { Outlet, useNavigate } from "react-router-dom";
 import getUserInformation from "../../actions/LoginScreens/getUserInformation";
+
 const UserProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(false);
@@ -40,6 +41,16 @@ const UserProfilePage = () => {
   useEffect(() => {
     getUserInformationData();
   }, []);
+
+  const logoutUser = async () => {
+    try {
+      localStorage.removeItem("user");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
@@ -113,7 +124,7 @@ const UserProfilePage = () => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Terms and Conditions</label>
             <div className="bg-gray-100 p-3 rounded-md h-24 overflow-y-auto text-sm">
               <p>
@@ -135,9 +146,9 @@ const UserProfilePage = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label className="block text-gray-700">Privacy Policy</label>
             <div className="bg-gray-100 p-3 rounded-md h-24 overflow-y-auto text-sm">
               <p>
@@ -159,8 +170,14 @@ const UserProfilePage = () => {
                 <li>Your personal data can be deleted upon request.</li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </form>
+        <button
+          className="border rounded-full py-2 px-10 bg-red-700 font-bold text-white ml-2 mt-4"
+          onClick={logoutUser}
+        >
+          Logout
+        </button>
       </div>
 
       {isModalOpen && (

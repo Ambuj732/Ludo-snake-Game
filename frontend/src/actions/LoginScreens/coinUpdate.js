@@ -2,7 +2,7 @@ import axios from "axios";
 const coinUpdateData = async (data) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/auth/coin-update",
+      "https://api.mojoboatts.com/api/auth/coin-update",
       data
     );
     return response;

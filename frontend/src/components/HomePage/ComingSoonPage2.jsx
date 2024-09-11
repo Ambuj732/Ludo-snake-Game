@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import bg from "../../assets/HomePage/bg.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
+import home from "../../assets/HomePage/home.png";
 import icon from "../../assets/HomePage/icon.png";
 import boost from "../../assets/HomePage/boost.png";
 import star from "../../assets/HomePage/star.png";
@@ -75,6 +76,10 @@ const ComingSoonPage2 = () => {
     navigate("/user-profile-page");
   };
 
+  const goToHomePage = () => {
+    navigate("/home-page");
+  };
+
   useEffect(() => {
     getLoginData();
   }, []);
@@ -83,8 +88,8 @@ const ComingSoonPage2 = () => {
     <div className=" absolute inset-0 bg-black min-h-screen p-4">
       <header className="w-full rounded-lg">
         <nav className="flex justify-between items-center px-1">
-          <div>
-            <img src={logo1} className="w-20 h-20 sm:w-32 sm:h-32" alt="Logo" />
+          <div onClick={goToHomePage} className="cursor-pointer">
+            <img src={home} className="w-10 h-9 sm:w-32 sm:h-32" alt="Logo" />
           </div>
           <div className="text-white cursor-pointer hide" onClick={toggleMenu}>
             <span className="text-xl">&#9776;</span>
@@ -108,7 +113,7 @@ const ComingSoonPage2 = () => {
       </header>
 
       <div className="flex justify-between mt-2 gap-4 w-full">
-        <div className="sm:w-[200px] h-16 flex flex-col gap-2 mb-4 sm:mb-0">
+        {/* <div className="sm:w-[200px] h-16 flex flex-col gap-2 mb-4 sm:mb-0">
           <div className="flex justify-between items-center gap-2">
             <div className="flex text-white">
               <span className="font-bold text-nowrap">Maddy Moon1</span>
@@ -118,13 +123,13 @@ const ComingSoonPage2 = () => {
             </div>
           </div>
           <ProgressBar striped variant="success" animated now={50} />
-        </div>
-        <div className="w-full sm:w-auto h-[54px] flex justify-between px-3  items-center border rounded-full bg-[#453A25] mt-3">
+        </div> */}
+        <div className="w-full sm:w-auto h-[54px] flex justify-around px-3  items-center border rounded-full bg-[#453A25] mt-3">
           <div className="flex flex-col justify-center items-center object-contain">
             <span className="text-white  text-sm">Prize Pool</span>
             <div className="flex gap-2 object-contain items-center justify-center">
               <img src={coin} className="w-5 h-5" alt="Coin" />
-              <span className="text-white">1000</span>
+              <span className="text-white">0$</span>
               <div className="rounded-full bg-gray-800 object-contain">
                 <img src={icon} className="w-5 h-5" alt="Icon" />
               </div>
