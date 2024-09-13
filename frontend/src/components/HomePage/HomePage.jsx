@@ -3,6 +3,7 @@ import bg from "../../assets/HomePage/bg.png";
 import logo1 from "../../assets/HomePage/logo1.png";
 import coin from "../../assets/HomePage/coin.png";
 import icon from "../../assets/HomePage/icon.png";
+import logout from "../../assets/HomePage/logout.png";
 import swipe from "../../assets/HomePage/swipe.png";
 import boost from "../../assets/HomePage/boost.png";
 import star from "../../assets/HomePage/star.png";
@@ -120,23 +121,23 @@ const HomePage = () => {
   };
 
   const goToWalletPage = () => {
-    navigate("/home-page/wallet");
+    navigate("wallet");
   };
 
   const goToPageSuperMarket = () => {
-    navigate("/home-page/super-market");
+    navigate("super-market");
   };
 
   const goToPagePlayZone = () => {
-    navigate("/home-page/play-zone");
+    navigate("play-zone");
   };
 
   const goFrinedsPage = () => {
-    navigate("/home-page/friends");
+    navigate("friends");
   };
 
   const goEarningPage = () => {
-    navigate("/home-page/earning");
+    navigate("earning");
   };
 
   const avatarPage = () => {
@@ -155,17 +156,28 @@ const HomePage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const logoutUser = async () => {
+    try {
+      localStorage.removeItem("user");
+      navigate("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
-    <div className="bg-black min-h-screen py-3 px-4">
-      <header className="w-full rounded-lg">
-        <nav className="flex justify-between items-center px-1">
+    <div className="bg-black min-h-screen">
+      <header className="w-full rounded-lg px-2 pt-3">
+        <nav className="flex justify-between items-center">
           <div>
             <img src={logo1} className="w-20 h-20 sm:w-32 sm:h-32" alt="Logo" />
           </div>
-          <div className="text-white cursor-pointer hide" onClick={toggleMenu}>
+
+          {/* <div className="text-white cursor-pointer hide" onClick={toggleMenu}>
             <span className="text-xl">&#9776;</span>
-          </div>
-          <div
+          </div> */}
+
+          {/* <div
             className={`sm:flex gap-7 text-white cursor-pointer ${
               menuOpen ? "block" : "hidden"
             } sm:block`}
@@ -173,17 +185,36 @@ const HomePage = () => {
             <span>Home</span>
             <span>About</span>
             <span>Contact</span>
-          </div>
-          <div
-            className="text-white cursor-pointer"
-            onClick={goUserProfilePage}
-          >
-            <span>{loginData.userName}</span>
+          </div> */}
+
+          <div className=" flex items-center">
+            <div className="flex justify-center items-center  rounded-full py-1 px-3 bg-gray-800">
+              <div
+                className="username text-white cursor-pointer"
+                onClick={goUserProfilePage}
+              >
+                <span className="text-nowrap font-medium">
+                  {loginData.userName}
+                </span>
+              </div>
+              <div className="flex ml-4">
+                <button
+                  className=" justify-center items-center  bg-gray-800 rounded-full overflow-hidden focus:outline-none"
+                  onClick={logoutUser}
+                >
+                  <img
+                    src={logout}
+                    className="w-7 h-7  rounded-full"
+                    alt="Profile Icon"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </nav>
       </header>
 
-      <div className="flex justify-between mt-2 gap-4 w-full">
+      <div className="flex justify-between gap-4 w-full px-4">
         <div className="sm:w-[200px] h-16 flex flex-col gap-2 mb-4 sm:mb-0">
           <div className="flex justify-between items-center gap-2">
             <div className="flex text-white">
@@ -213,24 +244,29 @@ const HomePage = () => {
           />
         </div>
       </div>
+      <div className="px-3">
+        <div className="flex flex-col justify-center items-center mt-4 shadow-custom shadow-gray-600 rounded-3xl w-full shadow-top-golden h-[390px] gap-10 ">
+          <div className="flex gap-1 items-center relative">
+            <img src={coin} className="w-10 h-10 " alt="Coin" />
+            <span className="text-white text-4xl font-bold">{amount}</span>
+          </div>
+          {flyCoin && (
+            <img
+              src={coin}
+              className="w-7 h-7 flying-coin "
+              alt="Flying Coin"
+            />
+          )}
 
-      <div className="flex flex-col justify-center items-center mt-4 shadow-custom shadow-gray-600 rounded-3xl w-full shadow-top-golden h-[390px] gap-10">
-        <div className="flex gap-1 items-center relative">
-          <img src={coin} className="w-10 h-10 " alt="Coin" />
-          <span className="text-white text-4xl font-bold">{amount}</span>
+          <img
+            src={bg}
+            className="h-[248px] w-[248px] imgsz object-cover rounded-xl group-hover/card:shadow-xl cursor-pointer hover:scale-105"
+            alt="Logo"
+            onClick={handleDiceRoll}
+          />
         </div>
-        {flyCoin && (
-          <img src={coin} className="w-7 h-7 flying-coin " alt="Flying Coin" />
-        )}
-
-        <img
-          src={bg}
-          className="h-[248px] w-[248px] imgsz object-cover rounded-xl group-hover/card:shadow-xl cursor-pointer hover:scale-105"
-          alt="Logo"
-          onClick={handleDiceRoll}
-        />
       </div>
-      <div className="flex  items-center mt-7 justify-between">
+      <div className="flex  items-center mt-7 justify-between px-4">
         <div className="flex gap-3 justify-center items-center">
           <img src={star} className="rounded-lg" alt="Star" />
           <span className="text-white font-bold">{energy}/1500</span>
@@ -242,41 +278,43 @@ const HomePage = () => {
           <span className="text-white font-bold">Sell</span>
         </div>
       </div>
-      <div className="flex bg-[#26292E] rounded-2xl w-auto h-20 mt-7 justify-between items-center flex-wrap px-2">
-        <div
-          className="flex flex-col items-center justify-center rounded-lg"
-          onClick={goToWalletPage}
-        >
-          <img src={rabbit} className="w-7 h-7 rounded" alt="Rabbit" />
-          <span className="text-white text-sm">Wallet</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center rounded-lg"
-          onClick={goToPageSuperMarket}
-        >
-          <img src={mining} className="w-7 h-7 rounded" alt="Mining" />
-          <span className="text-white text-sm">Super Market</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center rounded-lg"
-          onClick={goToPagePlayZone}
-        >
-          <img src={game} className="w-7 h-7 rounded" alt="Game" />
-          <span className="text-white text-sm">Play Zone</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center rounded-lg"
-          onClick={goFrinedsPage}
-        >
-          <img src={freinds} className="w-7 h-7 rounded" alt="Friends" />
-          <span className="text-white text-sm">Friends</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center rounded-lg"
-          onClick={goEarningPage}
-        >
-          <img src={earn} className="w-7 h-7 rounded" alt="Earning" />
-          <span className="text-white text-sm">Earning</span>
+      <div className="px-2">
+        <div className="flex bg-[#26292E] rounded-2xl w-auto h-20 mt-7 justify-between items-center flex-wrap px-2">
+          <div
+            className="flex flex-col items-center justify-center rounded-lg"
+            onClick={goToWalletPage}
+          >
+            <img src={rabbit} className="w-7 h-7 rounded" alt="Rabbit" />
+            <span className="text-white text-sm">Wallet</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center rounded-lg"
+            onClick={goToPageSuperMarket}
+          >
+            <img src={mining} className="w-7 h-7 rounded" alt="Mining" />
+            <span className="text-white text-sm">Super Market</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center rounded-lg"
+            onClick={goToPagePlayZone}
+          >
+            <img src={game} className="w-7 h-7 rounded" alt="Game" />
+            <span className="text-white text-sm">Play Zone</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center rounded-lg"
+            onClick={goFrinedsPage}
+          >
+            <img src={freinds} className="w-7 h-7 rounded" alt="Friends" />
+            <span className="text-white text-sm">Friends</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center rounded-lg"
+            onClick={goEarningPage}
+          >
+            <img src={earn} className="w-7 h-7 rounded" alt="Earning" />
+            <span className="text-white text-sm">Earning</span>
+          </div>
         </div>
       </div>
       <Outlet />

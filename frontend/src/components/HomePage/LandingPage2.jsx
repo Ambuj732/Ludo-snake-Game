@@ -255,16 +255,10 @@ const LandingPage2 = () => {
               <h2 className="text-extra-large1 sm-text-medium w-100 stol-400 text-lg-left text-center mb-lg-4 mb-3 mt-lg-4 text-white">
                 Tournaments
               </h2>
-              <p className="text-lg-left text-center text-medium text-ludo line-height-26 mb-lg-3 mb-lg-4 mb-3 stol-b">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p className="text-lg-left text-center text-medium text-ludo line-height-26 mb-lg-0 mb-lg-4 mb-3 stol-b">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <p className="text-lg-left text-center text-medium text-ludo line-height-26 mb-lg-0 mb-lg-4 mb-3 stol-b">
-                <strong>Join and win big cash prizes every hour!</strong>
+
+              <p className=" text-center text-medium text-white line-height-26 mb-lg-0 mb-lg-4 mb-3 ">
+                This game involves financial risk and can be addictive. Please
+                play responsibly and at your own risk
               </p>
             </div>
             <div className="col-lg-6 col-12 text-center d-lg-block d-none">

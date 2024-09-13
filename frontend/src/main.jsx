@@ -25,17 +25,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/home-page" element={<HomePage />}>
-        <Route path="/home-page/wallet" element={<ComingSoonPage />}></Route>
-        <Route
-          path="/home-page/super-market"
-          element={<ComingSoonPage2 />}
-        ></Route>
-        <Route
-          path="/home-page/play-zone"
-          element={<ComingSoonPage3 />}
-        ></Route>
-        <Route path="/home-page/friends" element={<Friends />}></Route>
-        <Route path="/home-page/earning" element={<Earning />}></Route>
+        <Route path="wallet" element={<ComingSoonPage />}></Route>
+        <Route path="super-market" element={<ComingSoonPage2 />}></Route>
+        <Route path="play-zone" element={<ComingSoonPage3 />}></Route>
+        <Route path="friends" element={<Friends />}></Route>
+        <Route path="earning" element={<Earning />}></Route>
       </Route>
       <Route path="/avatar" element={<Avatar />}></Route>
       <Route path="/edit-profile-page" element={<ProfilePage />}></Route>

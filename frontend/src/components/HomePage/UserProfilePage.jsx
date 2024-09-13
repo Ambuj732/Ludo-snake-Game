@@ -42,15 +42,6 @@ const UserProfilePage = () => {
     getUserInformationData();
   }, []);
 
-  const logoutUser = async () => {
-    try {
-      localStorage.removeItem("user");
-      navigate("/login");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
@@ -172,12 +163,6 @@ const UserProfilePage = () => {
             </div>
           </div> */}
         </form>
-        <button
-          className="border rounded-full py-2 px-10 bg-red-700 font-bold text-white ml-2 mt-4"
-          onClick={logoutUser}
-        >
-          Logout
-        </button>
       </div>
 
       {isModalOpen && (

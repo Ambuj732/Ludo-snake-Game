@@ -35,3 +35,63 @@
                 height: auto;
         }
 }
+
+.username {
+        font-size: 1.5rem;
+        /* Adjust size based on design */
+        font-weight: bold;
+        color: #ffd700;
+        transform: scale(1.05);
+        text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+
+        /* White or any color that matches */
+        transition: all 0.3s ease-in-out;
+        /* text-transform: capitalize; */
+        cursor: pointer;
+}
+
+/* .username:hover { */
+/* color: #ffd700; */
+/* Gold color on hover */
+/* transform: scale(1.05); */
+/* Slight zoom effect */
+/* text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8); */
+/* Golden glow */
+/* } */
+
+.username:hover {
+        background-color: #333;
+        border-radius: 8px;
+}
+
+@keyframes fadeIn {
+        from {
+                opacity: 0;
+                transform: translateY(-10px);
+        }
+
+        to {
+                opacity: 1;
+                transform: translateY(0);
+        }
+}
+
+.username {
+        animation: fadeIn 1.5s ease-in-out;
+}
+
+button:hover {
+        background-color: #555;
+}
+
+.relative .dropdown-menu {
+        display: none;
+}
+
+.relative:hover .dropdown-menu {
+        display: inline;
+}
+
+button:focus {
+        outline: none;
+}

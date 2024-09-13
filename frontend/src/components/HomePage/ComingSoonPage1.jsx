@@ -16,6 +16,7 @@ import { useNavigate } from "react-router";
 import swipe from "../../assets/HomePage/swipe.png";
 import { CiSettings } from "react-icons/ci";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import "./HomePage.css";
 import login from "../../actions/LoginScreens/login";
 
 const levels = [
@@ -85,8 +86,8 @@ const ComingSoonPage = () => {
   }, []);
 
   return (
-    <div className=" absolute inset-0 bg-black min-h-screen p-4">
-      <header className="w-full rounded-lg mt-1">
+    <div className=" absolute inset-0 bg-black min-h-screen">
+      <header className="w-full rounded-lg mt-4 px-4">
         <nav className="flex justify-between items-center px-1">
           <div onClick={goToHomePage} className="cursor-pointer">
             <img src={home} className="w-10 h-9 sm:w-32 sm:h-32" alt="Logo" />
@@ -104,7 +105,7 @@ const ComingSoonPage = () => {
             <span>Contact</span>
           </div>
           <div
-            className="text-white cursor-pointer"
+            className=" username text-white cursor-pointer"
             onClick={goUserProfilePage}
           >
             <span>{loginData.userName}</span>
@@ -112,7 +113,7 @@ const ComingSoonPage = () => {
         </nav>
       </header>
 
-      <div className="flex justify-between mt-4 gap-4 w-full">
+      <div className="flex justify-between mt-4 gap-4 w-full px-4">
         {/* <div className="sm:w-[200px] h-16 flex flex-col gap-2 mb-4 sm:mb-0">
           <div className="flex justify-between items-center gap-2">
             <div className="flex text-white">
@@ -151,45 +152,40 @@ const ComingSoonPage = () => {
         />
       </div>
 
-      <div className="flex  items-center ">
-        <div className="flex gap-3 justify-center items-center">
-          <img src={star} className="rounded-lg" alt="Star" />
-          <span className="text-white font-bold">726/1500</span>
-        </div>
-      </div>
-
-      <div className=" flex gap-2 bg-[#26292E] rounded-2xl w-auto h-20 mt-4 justify-between items-center flex-wrap px-2">
-        <div className="flex flex-col items-center justify-center rounded-lg">
-          <img src={rabbit} className="w-7 h-7 rounded" alt="Rabbit" />
-          <span className="text-white  text-sm">Wallet</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
-          onClick={goToSuperMarketPage}
-        >
-          <img src={mining} className="w-7 h-7 rounded" alt="Mining" />
-          <span className="text-white  text-sm">SuperMarket</span>
-        </div>
-        <div
-          onClick={goFrinedsPage}
-          className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
-        >
-          <img src={freinds} className="w-7 h-7 rounded" alt="Friends" />
-          <span className="text-white  text-sm">Friends</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
-          onClick={goToPagePlayZone}
-        >
-          <img src={game} className="w-7 h-7 rounded" alt="Coin" />
-          <span className="text-white  text-sm">PlayZone</span>
-        </div>
-        <div
-          className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
-          onClick={goToEarnPage}
-        >
-          <img src={earn} className="w-7 h-7 rounded" alt="Coin" />
-          <span className="text-white  text-sm">Earn</span>
+      <div className="px-2">
+        <div className=" flex gap-2 bg-[#26292E] rounded-2xl w-auto h-20 mt-4 justify-between items-center flex-wrap px-2">
+          <div className="flex flex-col items-center justify-center rounded-lg">
+            <img src={rabbit} className="w-7 h-7 rounded" alt="Rabbit" />
+            <span className="text-white  text-sm">Wallet</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
+            onClick={goToSuperMarketPage}
+          >
+            <img src={mining} className="w-7 h-7 rounded" alt="Mining" />
+            <span className="text-white  text-sm">SuperMarket</span>
+          </div>
+          <div
+            onClick={goFrinedsPage}
+            className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
+          >
+            <img src={freinds} className="w-7 h-7 rounded" alt="Friends" />
+            <span className="text-white  text-sm">Friends</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
+            onClick={goToPagePlayZone}
+          >
+            <img src={game} className="w-7 h-7 rounded" alt="Coin" />
+            <span className="text-white  text-sm">PlayZone</span>
+          </div>
+          <div
+            className="flex flex-col items-center justify-center hover:border-gray-800 rounded-lg"
+            onClick={goToEarnPage}
+          >
+            <img src={earn} className="w-7 h-7 rounded" alt="Coin" />
+            <span className="text-white  text-sm">Earn</span>
+          </div>
         </div>
       </div>
     </div>
