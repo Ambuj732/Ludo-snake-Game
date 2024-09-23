@@ -2,7 +2,7 @@ import axios from "axios";
 const userInformation = async (data) => {
   try {
     const response = await axios.post(
-      "https://api.mojoboatts.com/api/auth/user-information",
+      "http://localhost:3000/auth/user-information",
       data
     );
     return response;

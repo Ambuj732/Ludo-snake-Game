@@ -148,6 +148,13 @@ const HomePage = () => {
     navigate("/user-profile-page");
   };
 
+  const goToBuyPage = () => {
+    navigate("/buy");
+  };
+  const goToSellPage = () => {
+    navigate("/sell");
+  };
+
   useEffect(() => {
     getLoginData();
     const interval = setInterval(() => {
@@ -266,15 +273,20 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div className="flex  items-center mt-7 justify-between px-4">
-        <div className="flex gap-3 justify-center items-center">
-          <img src={star} className="rounded-lg" alt="Star" />
-          <span className="text-white font-bold">{energy}/1500</span>
-        </div>
-        <div className="flex gap-2 justify-center items-center px-4">
-          {/* <img src={boost} className="rounded-lg w-10 h-8" alt="Boost" /> */}
+      <div className="flex  items-center mt-7 justify-between px-4 cursor-pointer">
+        <div
+          className="flex gap-3 justify-center items-center"
+          onClick={goToBuyPage}
+        >
+          {/* <img src={star} className="rounded-lg" alt="Star" /> */}
           <span className="text-white font-bold">Buy</span>
-          <span className="text-blue-800">/</span>
+        </div>
+        <div
+          className="flex gap-2 justify-center items-center px-4"
+          onClick={goToSellPage}
+        >
+          {/* <img src={boost} className="rounded-lg w-10 h-8" alt="Boost" /> */}
+
           <span className="text-white font-bold">Sell</span>
         </div>
       </div>

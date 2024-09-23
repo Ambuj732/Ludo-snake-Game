@@ -21,6 +21,8 @@ import ComingSoonPage2 from "./components/HomePage/ComingSoonPage2.jsx";
 import ComingSoonPage3 from "./components/HomePage/ComingSoonPage3.jsx";
 import ProfilePage from "./components/HomePage/ProfilePage.jsx";
 import UserProfilePage from "./components/HomePage/UserProfilePage.jsx";
+import BuyPage from "./components/HomePage/BuyPage.jsx";
+import SellPage from "./components/HomePage/SellPage.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -32,6 +34,8 @@ const router = createBrowserRouter(
         <Route path="earning" element={<Earning />}></Route>
       </Route>
       <Route path="/avatar" element={<Avatar />}></Route>
+      <Route path="/buy" element={<BuyPage />}></Route>
+      <Route path="/sell" element={<SellPage />}></Route>
       <Route path="/edit-profile-page" element={<ProfilePage />}></Route>
       <Route path="/user-profile-page" element={<UserProfilePage />}></Route>
       <Route path="/sign-up" element={<Signup />}></Route>

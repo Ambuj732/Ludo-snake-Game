@@ -10,6 +10,7 @@ import userInformation from "./routes/userInformation.routes.js";
 import getUserInformation from "./routes/getUserInforamtion.routes.js";
 import updateCoins from "./routes/updateCoin.routes.js";
 import claimDailyReward from "./routes/dailyRewards.routes.js";
+// import adminRoutes from "./routes/adminRoutes.js";
 const port = process.env.PORT;
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/auth", userInformation);
 app.use("/auth", getUserInformation);
 app.use("/auth", updateCoins);
 app.use("/auth", claimDailyReward);
+// app.use("/api/auth/admin", adminRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
